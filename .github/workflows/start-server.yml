@@ -29,3 +29,4 @@ jobs:
           npm install
           nohup node server.cjs &
           echo "server is go on $URL"
+          sleep 10800
