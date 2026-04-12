@@ -29,12 +29,12 @@ curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
 echo "### Update user: $USER password ###"
 echo -e "$LINUX_USER_PASSWORD\n$LINUX_USER_PASSWORD" | sudo passwd "$USER"
 
-echo "### Start ngrok proxy for 22 port ###"
+echo "### Start ngrok proxy for 80 port ###"
 
 
 rm -f .ngrok.log
 ngrok config add-authtoken "$NGROK_AUTH_TOKEN"
-ngrok tcp 22 --log ".ngrok.log" &
+ngrok http 80 --log ".ngrok.log" &
 
 sleep 10
 if [[ -z "$HAS_ERRORS" ]]; then
