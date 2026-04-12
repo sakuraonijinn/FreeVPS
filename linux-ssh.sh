@@ -30,11 +30,22 @@ echo "### Update user: $USER password ###"
 echo -e "$LINUX_USER_PASSWORD\n$LINUX_USER_PASSWORD" | sudo passwd "$USER"
 
 echo "### Start ngrok proxy for 80 port ###"
+# Start HTTP tunnel
+rm -f .ngrok-http.log
+ngrok http 80 --log=".ngrok-http.log" &
+sleep 5
+HTTP_URL=$(grep -o -E "https?://[^ ]+" .ngrok-http.log)
+echo "HTTP URL: $HTTP_URL"rm -f .ngrok-ssh.log
+ngrok tcp 22 --log=".ngrok-ssh.log" &
+sleep 5
+SSH_CMD=$(grep -o -E "tcp://[^ ]+" .ngrok-ssh.log | sed "s/tcp:\/\//ssh $USER@/" | sed "s/:/ -p /")
+echo "SSH Command: $SSH_CMD"
 
-
-rm -f .ngrok.log
-ngrok config add-authtoken "$NGROK_AUTH_TOKEN"
-ngrok http 80 --log --pooling-enabled ".ngrok.log" &
+rm -f .ngrok-ssh.log
+ngrok tcp 22 --log=".ngrok-ssh.log" &
+sleep 5
+SSH_CMD=$(grep -o -E "tcp://[^ ]+" .ngrok-ssh.log | sed "s/tcp:\/\//ssh $USER@/" | sed "s/:/ -p /")
+echo "SSH Command: $SSH_CMD"
 
 sleep 10
 if [[ -z "$HAS_ERRORS" ]]; then
