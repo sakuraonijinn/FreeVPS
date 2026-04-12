@@ -35,11 +35,11 @@ ngrok config add-authtoken "$NGROK_AUTH_TOKEN"
 
 # Start HTTP tunnel
 rm -f .ngrok-http.log
-ngrok http 80 --log=".ngrok-http.log" &
+ngrok http 80 --pooling-enabled --log=".ngrok-http.log" &
 sleep 5
 HTTP_URL=$(grep -o -E "https?://[^ ]+" .ngrok-http.log)
 echo "HTTP URL: $HTTP_URL"rm -f .ngrok-ssh.log
-ngrok tcp 22 --log=".ngrok-ssh.log" &
+ngrok tcp 22 --pooling-enabled --log=".ngrok-ssh.log" &
 sleep 5
 SSH_CMD=$(grep -o -E "tcp://[^ ]+" .ngrok-ssh.log | sed "s/tcp:\/\//ssh $USER@/" | sed "s/:/ -p /")
 echo "SSH Command: $SSH_CMD"
