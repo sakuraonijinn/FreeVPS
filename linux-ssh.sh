@@ -31,7 +31,8 @@ echo -e "$LINUX_USER_PASSWORD\n$LINUX_USER_PASSWORD" | sudo passwd "$USER"
 
 echo "### Start ngrok proxy for 80 port ###"
 
-ngrok config add-authtoken [[ "$NGROK_AUTH_TOKEN" ]]
+ngrok config add-authtoken "$NGROK_AUTH_TOKEN"
+
 # Start HTTP tunnel
 rm -f .ngrok-http.log
 ngrok http 80 --log=".ngrok-http.log" &
