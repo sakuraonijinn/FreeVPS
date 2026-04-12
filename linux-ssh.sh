@@ -34,7 +34,7 @@ echo "### Start ngrok proxy for 80 port ###"
 
 rm -f .ngrok.log
 ngrok config add-authtoken "$NGROK_AUTH_TOKEN"
-ngrok http 80 --log ".ngrok.log" &
+ngrok http 80 --log --pooling-enabled ".ngrok.log" &
 
 sleep 10
 if [[ -z "$HAS_ERRORS" ]]; then
