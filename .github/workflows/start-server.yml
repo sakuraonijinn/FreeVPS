@@ -26,3 +26,6 @@ jobs:
           sleep 5
           URL=$(grep -o -E "https?://[^ ]+" .ngrok.log)
           echo "Public URL: $URL"
+          npm install
+          nohup node server.cjs &
+          echo "server is go on $URL"
