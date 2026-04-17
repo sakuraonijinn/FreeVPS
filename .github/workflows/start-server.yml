@@ -39,7 +39,7 @@ jobs:
 
       - name: connect to warp
         run: |
-          warp-cli connector new eyJhIjoiOTBmNDQ1ZGZiMmEyYTA4NzExMTJhMTU1N2ZmMzliY2IiLCJ0IjoiNmJmNzRjZGEtZjE5Yi00ZWY1LTlkNTMtMzc3NzkzMmRlMGU4IiwicyI6IktUN3RDOVFiZis0dWswTjBjWlkvNStCSGNFcnl1T0V4SVB1WHBQOXdQT0NPRmZpMnBKTksza3ZMYmo0Y0tGRU9HVkVKMUdNNkNJQnk5ZVhvMWJSS0NRPT0ifQ== && warp-cli connect -- --accept-tos
+          warp-cli connector -- --accept-tos new eyJhIjoiOTBmNDQ1ZGZiMmEyYTA4NzExMTJhMTU1N2ZmMzliY2IiLCJ0IjoiNmJmNzRjZGEtZjE5Yi00ZWY1LTlkNTMtMzc3NzkzMmRlMGU4IiwicyI6IktUN3RDOVFiZis0dWswTjBjWlkvNStCSGNFcnl1T0V4SVB1WHBQOXdQT0NPRmZpMnBKTksza3ZMYmo0Y0tGRU9HVkVKMUdNNkNJQnk5ZVhvMWJSS0NRPT0ifQ== && warp-cli connect
           
           
           
